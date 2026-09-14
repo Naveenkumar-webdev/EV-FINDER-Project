@@ -61,7 +61,8 @@ function isBookingCompleted(bookingDateStr, slotStr) {
 
 // Fetch bookings from Spring Boot
 function loadBookings() {
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings`)
+    const getApiBase = () => (window.BASE_URL || (typeof getApiBaseUrl === 'function' ? getApiBaseUrl() : ((window.location && window.location.hostname && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) ? 'http://127.0.0.1:8080/api' : `${window.location.origin}/api`)));
+    fetch(`${getApiBase()}/bookings`)
         .then(res => res.json())
         .then(data => {
             const table = document.getElementById("historyTableBody");
@@ -154,7 +155,8 @@ async function cancelBooking(id) {
     }
 
     try {
-        const response = await fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings/${id}/cancel`, {
+        const getApiBase = () => (window.BASE_URL || (typeof getApiBaseUrl === 'function' ? getApiBaseUrl() : ((window.location && window.location.hostname && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) ? 'http://127.0.0.1:8080/api' : `${window.location.origin}/api`)));
+        const response = await fetch(`${getApiBase()}/bookings/${id}/cancel`, {
             method: "POST"
         });
 

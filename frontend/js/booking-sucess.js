@@ -2,13 +2,15 @@
 // Booking Success Page Logic
 // ===========================
 
+const getSuccessApiBase = () => (window.BASE_URL || (typeof getApiBaseUrl === 'function' ? getApiBaseUrl() : ((window.location && window.location.hostname && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) ? 'http://127.0.0.1:8080/api' : `${window.location.origin}/api`)));
+
 window.onload = function () {
     const bookingId = localStorage.getItem("bookingId");
     if (!bookingId || bookingId === "N/A") {
         return;
     }
 
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings/${bookingId}`)
+    fetch(`${getSuccessApiBase()}/bookings/${bookingId}`)
         .then(res => {
             if (!res.ok) throw new Error("Failed to load booking details");
             return res.json();
@@ -67,7 +69,7 @@ window.onload = function () {
 
 function loadStationContact(stationName) {
     if (!stationName) return;
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations`)
+    fetch(`${getSuccessApiBase()}/stations`)
         .then(res => res.json())
         .then(stations => {
             const target = stations.find(s => 
@@ -108,7 +110,7 @@ function sendReceiptToEmail() {
         return;
     }
 
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings/${bookingId}/email`, {
+    fetch(`${getSuccessApiBase()}/bookings/${bookingId}/email`, {
         method: "POST"
     })
     .then(res => res.json())

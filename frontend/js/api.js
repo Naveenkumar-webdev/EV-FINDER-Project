@@ -1,5 +1,22 @@
-const API_HOST = (window.location && window.location.hostname) ? window.location.hostname : "127.0.0.1";
-const BASE_URL = "https://ev-finder-project-production-2026.up.railway.app/api";
+// Dynamic Backend API Base URL Resolver
+function getApiBaseUrl() {
+    if (window.CONFIG && window.CONFIG.API_URL) {
+        return window.CONFIG.API_URL;
+    }
+    const host = (window.location && window.location.hostname) ? window.location.hostname : "127.0.0.1";
+    
+    // Local development (direct to Spring Boot on port 8080)
+    if (host === "localhost" || host === "127.0.0.1") {
+        return "http://127.0.0.1:8080/api";
+    }
+    
+    // Production / Railway domain (uses origin + /api proxied via server)
+    return `${window.location.origin}/api`;
+}
+
+const BASE_URL = getApiBaseUrl();
+window.BASE_URL = BASE_URL;
+window.getApiBaseUrl = getApiBaseUrl;
 
 async function makeApiRequest(endpoint, method = "GET", data = null) {
     const config = {

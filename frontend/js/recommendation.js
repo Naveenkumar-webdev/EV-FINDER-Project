@@ -12,7 +12,8 @@ async function loadRecommendation() {
 
     try {
 
-        const response = await fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations`);
+        const baseUrl = (window.BASE_URL || (typeof getApiBaseUrl === 'function' ? getApiBaseUrl() : ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://127.0.0.1:8080/api' : `${window.location.origin}/api`)));
+        const response = await fetch(`${baseUrl}/stations`);
 
         if (!response.ok) {
 

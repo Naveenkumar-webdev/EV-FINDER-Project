@@ -1,8 +1,10 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const url = require('url');
 
 const PORT = process.env.PORT || 5500;
+const BACKEND_URL = process.env.BACKEND_URL || 'http://127.0.0.1:8080';
 const PUBLIC_DIR = path.join(__dirname, 'frontend');
 
 const MIME_TYPES = {
@@ -19,6 +21,56 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
+    // Handle CORS preflight options
+    if (req.method === 'OPTIONS') {
+        res.writeHead(204, {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        });
+        res.end();
+        return;
+    }
+
+    // Proxy /api requests to Spring Boot Backend
+    if (req.url.startsWith('/api')) {
+        try {
+            const targetUrl = new url.URL(req.url, BACKEND_URL);
+            const options = {
+                hostname: targetUrl.hostname,
+                port: targetUrl.port || (targetUrl.protocol === 'https:' ? 443 : 80),
+                path: targetUrl.pathname + targetUrl.search,
+                method: req.method,
+                headers: {
+                    ...req.headers,
+                    host: targetUrl.host
+                }
+            };
+
+            const proxyReq = http.request(options, (proxyRes) => {
+                res.writeHead(proxyRes.statusCode, {
+                    ...proxyRes.headers,
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+                });
+                proxyRes.pipe(res, { end: true });
+            });
+
+            proxyReq.on('error', (err) => {
+                console.error('[API PROXY ERROR]', err.message);
+                res.writeHead(502, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+                res.end(JSON.stringify({ error: 'Backend API connection failed', message: err.message }));
+            });
+
+            req.pipe(proxyReq, { end: true });
+            return;
+        } catch (e) {
+            console.error('[PROXY EXCEPTION]', e);
+        }
+    }
+
+    // Serve static frontend files
     let reqUrl = req.url.split('?')[0];
     let filePath = path.join(PUBLIC_DIR, reqUrl === '/' ? 'index.html' : reqUrl);
     
@@ -52,6 +104,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Frontend static server running on all interfaces on port ${PORT}`);
-    console.log(`Local Access: http://localhost:${PORT}/index.html`);
+    console.log(`Frontend & API Proxy Server running on port ${PORT}`);
+    console.log(`Backend Target URL: ${BACKEND_URL}`);
 });

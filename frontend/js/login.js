@@ -22,7 +22,8 @@ async function loginUser(e) {
     };
 
     try {
-        const response = await fetch("https://ev-finder-project-production-2026.up.railway.app/api/users/login", {
+        const baseUrl = (window.BASE_URL || (typeof getApiBaseUrl === 'function' ? getApiBaseUrl() : `${window.location.origin}/api`));
+        const response = await fetch(`${baseUrl}/users/login`, {
 
             method: "POST",
 

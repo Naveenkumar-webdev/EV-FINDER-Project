@@ -4,6 +4,8 @@
 
 let method = "card";
 
+const getPaymentApiBase = () => (window.BASE_URL || (typeof getApiBaseUrl === 'function' ? getApiBaseUrl() : ((window.location && window.location.hostname && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) ? 'http://127.0.0.1:8080/api' : `${window.location.origin}/api`)));
+
 // Load booking info from localStorage
 window.onload = function () {
     let bookingId = localStorage.getItem("bookingId");
@@ -12,7 +14,7 @@ window.onload = function () {
     document.getElementById("bId").innerText = "Booking ID: " + bookingId;
     document.getElementById("bAmount").innerText = "Amount: -";
 
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings/${bookingId}`)
+    fetch(`${getPaymentApiBase()}/bookings/${bookingId}`)
         .then(res => res.json())
         .then(booking => {
             document.getElementById("bStation").innerText = "Station: " + booking.station;
@@ -102,7 +104,7 @@ function payNow() {
     alert("Processing Payment...");
 
     setTimeout(() => {
-        fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings/${bookingId}/pay`, {
+        fetch(`${getPaymentApiBase()}/bookings/${bookingId}/pay`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ amount, method, upiId })

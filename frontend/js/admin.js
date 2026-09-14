@@ -62,11 +62,13 @@ function isBookingCompleted(bookingDateStr, slotStr) {
     return now > slotEndTime;
 }
 
+const getAdminApiBase = () => (window.BASE_URL || (typeof getApiBaseUrl === 'function' ? getApiBaseUrl() : ((window.location && window.location.hostname && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) ? 'http://127.0.0.1:8080/api' : `${window.location.origin}/api`)));
+
 // ----------------------
 // Load all stations
 // ----------------------
 function loadStations() {
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations`)
+    fetch(`${getAdminApiBase()}/stations`)
         .then(res => res.json())
         .then(data => {
             allStationsData = data;
@@ -174,7 +176,7 @@ function addStation() {
         longitude: parseFloat(document.getElementById("lng").value) || 0
     };
 
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations`, {
+    fetch(`${getAdminApiBase()}/stations`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -207,7 +209,7 @@ function deleteStation(id) {
     if (!confirm("Are you sure you want to delete this station?")) {
         return;
     }
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations/${id}`, {
+    fetch(`${getAdminApiBase()}/stations/${id}`, {
         method: "DELETE"
     })
     .then(res => {
@@ -222,7 +224,7 @@ function deleteStation(id) {
 // Load All Stations Bookings
 // ----------------------
 function loadAllBookings() {
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings`)
+    fetch(`${getAdminApiBase()}/bookings`)
         .then(res => res.json())
         .then(data => {
             allBookingsData = data;
@@ -366,7 +368,7 @@ function cancelBookingByAdmin(id) {
     if (!confirm("Are you sure you want to cancel this booking? Slot will be restored to the station.")) {
         return;
     }
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings/${id}/cancel`, {
+    fetch(`${getAdminApiBase()}/bookings/${id}/cancel`, {
         method: "POST"
     })
     .then(res => {
@@ -382,7 +384,7 @@ function deleteBookingByAdmin(id) {
     if (!confirm("Are you sure you want to permanently delete this booking record?")) {
         return;
     }
-    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings/${id}`, {
+    fetch(`${getAdminApiBase()}/bookings/${id}`, {
         method: "DELETE"
     })
     .then(res => {
