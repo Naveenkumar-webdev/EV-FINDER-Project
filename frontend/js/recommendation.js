@@ -12,7 +12,7 @@ async function loadRecommendation() {
 
     try {
 
-        const response = await fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`);
+        const response = await fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations`);
 
         if (!response.ok) {
 

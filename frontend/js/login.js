@@ -22,7 +22,7 @@ async function loginUser(e) {
     };
 
     try {
-        const response = await fetch("https://ev-finder-backend-production.up.railway.app/api/users/login", {
+        const response = await fetch("https://ev-finder-project-production-2026.up.railway.app/api/users/login", {
 
             method: "POST",
 

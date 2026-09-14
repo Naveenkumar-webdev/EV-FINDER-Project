@@ -1,5 +1,5 @@
 const API_HOST = (window.location && window.location.hostname) ? window.location.hostname : "127.0.0.1";
-const BASE_URL = "https://ev-finder-backend-production.up.railway.app/api";
+const BASE_URL = "https://ev-finder-project-production-2026.up.railway.app/api";
 
 async function makeApiRequest(endpoint, method = "GET", data = null) {
     const config = {

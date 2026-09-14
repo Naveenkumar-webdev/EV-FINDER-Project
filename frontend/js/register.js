@@ -76,7 +76,7 @@ async function startRegistration(e) {
 
     // Check if email or mobile number is already registered
     try {
-        const checkResponse = await fetch(`https://ev-finder-backend-production.up.railway.app/api/users/check-exists?email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`);
+        const checkResponse = await fetch(`https://ev-finder-project-production-2026.up.railway.app/api/users/check-exists?email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`);
         if (checkResponse.ok) {
             const checkData = await checkResponse.json();
             if (checkData.exists) {
@@ -107,7 +107,7 @@ async function startRegistration(e) {
     submitBtn.innerText = "Sending OTP...";
 
     try {
-        const response = await fetch(`https://ev-finder-backend-production.up.railway.app/api/users/register/send-otp`, {
+        const response = await fetch(`https://ev-finder-project-production-2026.up.railway.app/api/users/register/send-otp`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -156,7 +156,7 @@ async function verifyOtpAndCompleteRegister(e) {
     verifyBtn.innerText = "Verifying...";
 
     try {
-        const verifyResponse = await fetch(`https://ev-finder-backend-production.up.railway.app/api/users/verify-otp`, {
+        const verifyResponse = await fetch(`https://ev-finder-project-production-2026.up.railway.app/api/users/verify-otp`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -175,7 +175,7 @@ async function verifyOtpAndCompleteRegister(e) {
             return;
         }
 
-        const registerResponse = await fetch(`https://ev-finder-backend-production.up.railway.app/api/users/register`, {
+        const registerResponse = await fetch(`https://ev-finder-project-production-2026.up.railway.app/api/users/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

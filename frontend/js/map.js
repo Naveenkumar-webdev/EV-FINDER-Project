@@ -14,7 +14,7 @@ function initMap() {
 
 // Load stations from backend
 function loadStations() {
-    fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`)
+    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations`)
         .then(res => res.json())
         .then(data => {
 

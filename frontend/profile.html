@@ -700,7 +700,7 @@ body {
 
 <script>
 const USER_KEY = "loggedUser";
-const API_BASE = "https://ev-finder-backend-production.up.railway.app/api/users";
+const API_BASE = "https://ev-finder-project-production-2026.up.railway.app/api/users";
 
 function loadUser() {
   const raw = localStorage.getItem(USER_KEY);
@@ -757,7 +757,7 @@ function renderUser() {
   document.getElementById("inputVehicle").value = vNum === "-" ? "" : vNum;
 
   // Dynamic booking history count
-  fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings`)
+  fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings`)
     .then(res => res.json())
     .then(bookings => {
       // Count user's bookings (filter by email match or name fallback)

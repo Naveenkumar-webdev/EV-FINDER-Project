@@ -8,7 +8,7 @@ window.onload = function () {
         return;
     }
 
-    fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings/${bookingId}`)
+    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings/${bookingId}`)
         .then(res => {
             if (!res.ok) throw new Error("Failed to load booking details");
             return res.json();
@@ -67,7 +67,7 @@ window.onload = function () {
 
 function loadStationContact(stationName) {
     if (!stationName) return;
-    fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`)
+    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations`)
         .then(res => res.json())
         .then(stations => {
             const target = stations.find(s => 
@@ -108,7 +108,7 @@ function sendReceiptToEmail() {
         return;
     }
 
-    fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings/${bookingId}/email`, {
+    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings/${bookingId}/email`, {
         method: "POST"
     })
     .then(res => res.json())

@@ -14,7 +14,7 @@ let filteredStations = [];
 
 async function loadStations() {
     try {
-        const response = await fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`);
+        const response = await fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations`);
 
         if (!response.ok) {
             throw new Error("Unable to load stations");

@@ -9,7 +9,7 @@ document.getElementById("stationForm").addEventListener("submit", async function
         availableSlots: parseInt(document.getElementById("availableSlots").value)
     };
 
-        const response = await fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`, {
+        const response = await fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations`, {
 
             method: "POST",
 

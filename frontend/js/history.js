@@ -61,7 +61,7 @@ function isBookingCompleted(bookingDateStr, slotStr) {
 
 // Fetch bookings from Spring Boot
 function loadBookings() {
-    fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings`)
+    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings`)
         .then(res => res.json())
         .then(data => {
             const table = document.getElementById("historyTableBody");
@@ -154,7 +154,7 @@ async function cancelBooking(id) {
     }
 
     try {
-        const response = await fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings/${id}/cancel`, {
+        const response = await fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings/${id}/cancel`, {
             method: "POST"
         });
 

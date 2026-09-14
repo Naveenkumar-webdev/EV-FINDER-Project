@@ -83,7 +83,7 @@ function isBookingCompleted(bookingDateStr, slotStr) {
 // Total Stations
 // -------------------------
 
-fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`)
+fetch(`https://ev-finder-project-production-2026.up.railway.app/api/stations`)
 .then(response => response.json())
 .then(data => {
     document.getElementById("stationCount").innerText =
@@ -97,7 +97,7 @@ fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`)
 // Total Bookings
 // -------------------------
 
-fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings`)
+fetch(`https://ev-finder-project-production-2026.up.railway.app/api/bookings`)
 
 .then(response => response.json())
 
@@ -239,7 +239,7 @@ function checkAndShowReviewModal(userBookings, userEmail) {
     currentReviewBooking = validBookings[validBookings.length - 1];
 
     // Check backend API if user already reviewed
-    fetch(`https://ev-finder-backend-production.up.railway.app/api/reviews/user/${encodeURIComponent(userEmail)}`)
+    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/reviews/user/${encodeURIComponent(userEmail)}`)
         .then(res => res.json())
         .then(reviews => {
             const currentStation = (currentReviewBooking.station || "").trim().toLowerCase();
@@ -292,7 +292,7 @@ function submitUserReview() {
         reviewText: comment
     };
 
-    fetch(`https://ev-finder-backend-production.up.railway.app/api/reviews`, {
+    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/reviews`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(reviewPayload)
@@ -318,7 +318,7 @@ function submitUserReview() {
 // Load Customer Reviews Table & Overall Rating
 // -------------------------
 function loadUserReviewsTable() {
-    fetch(`https://ev-finder-backend-production.up.railway.app/api/reviews`)
+    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/reviews`)
         .then(res => res.json())
         .then(reviews => {
             const tableBody = document.getElementById("userReviewsTable");
@@ -369,7 +369,7 @@ function loadUserReviewsTable() {
 }
 
 function loadDashboardRating() {
-    fetch(`https://ev-finder-backend-production.up.railway.app/api/reviews`)
+    fetch(`https://ev-finder-project-production-2026.up.railway.app/api/reviews`)
         .then(res => res.json())
         .then(reviews => {
             if (reviews && reviews.length > 0) {
