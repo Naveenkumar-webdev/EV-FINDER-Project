@@ -1,4 +1,5 @@
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
@@ -20,13 +21,17 @@ const MIME_TYPES = {
     '.ico': 'image/x-icon'
 };
 
-const server = http.createServer((req, res) => {
+const serverOptions = {
+    maxHeaderSize: 64 * 1024 // 64KB max header size to prevent header overflow
+};
+
+const server = http.createServer(serverOptions, (req, res) => {
     // Handle CORS preflight options
     if (req.method === 'OPTIONS') {
         res.writeHead(204, {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
         });
         res.end();
         return;
@@ -36,24 +41,36 @@ const server = http.createServer((req, res) => {
     if (req.url.startsWith('/api')) {
         try {
             const targetUrl = new url.URL(req.url, BACKEND_URL);
+            const transport = targetUrl.protocol === 'https:' ? https : http;
+
+            // Clean request headers for proxying
+            const proxyHeaders = { ...req.headers };
+            proxyHeaders.host = targetUrl.host;
+            delete proxyHeaders['connection'];
+            delete proxyHeaders['keep-alive'];
+            delete proxyHeaders['transfer-encoding'];
+            delete proxyHeaders['expect'];
+
             const options = {
                 hostname: targetUrl.hostname,
                 port: targetUrl.port || (targetUrl.protocol === 'https:' ? 443 : 80),
                 path: targetUrl.pathname + targetUrl.search,
                 method: req.method,
-                headers: {
-                    ...req.headers,
-                    host: targetUrl.host
-                }
+                headers: proxyHeaders,
+                maxHeaderSize: 64 * 1024,
+                rejectUnauthorized: false
             };
 
-            const proxyReq = http.request(options, (proxyRes) => {
-                res.writeHead(proxyRes.statusCode, {
+            const proxyReq = transport.request(options, (proxyRes) => {
+                const resHeaders = {
                     ...proxyRes.headers,
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-                });
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
+                };
+                delete resHeaders['transfer-encoding'];
+
+                res.writeHead(proxyRes.statusCode, resHeaders);
                 proxyRes.pipe(res, { end: true });
             });
 
@@ -67,6 +84,9 @@ const server = http.createServer((req, res) => {
             return;
         } catch (e) {
             console.error('[PROXY EXCEPTION]', e);
+            res.writeHead(500, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+            res.end(JSON.stringify({ error: 'Proxy internal error', message: e.message }));
+            return;
         }
     }
 
