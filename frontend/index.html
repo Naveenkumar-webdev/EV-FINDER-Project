@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#0f5d82">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+
+<title>EV Finder | Smart EV Charging</title>
+
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="index-bg">
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+
+<i class="fa-solid fa-bolt"></i>
+
+EV Finder
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="#features">Features</a></li>
+
+<li><a href="view-stations.html" data-requires-auth="true">Stations</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+<div class="auth-buttons">
+
+<a href="login.html"
+class="login-btn">
+
+Login
+
+</a>
+
+<a href="register.html"
+class="register-btn">
+
+Register
+
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>
+
+Smart EV Charging
+
+<span>Made Easy</span>
+
+</h1>
+
+<p>
+
+Find nearby charging stations,
+book charging slots online,
+and manage your EV journey with ease.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="view-stations.html"
+class="primary-btn" data-requires-auth="true">
+
+Find Stations
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-image">
+<img src="images/ev-car-image.jpeg" alt="EV Charging">
+
+
+</div>
+
+</section>
+<!-- ===========================
+        FEATURES
+=========================== -->
+
+<section id="features" class="features">
+
+<div class="section-title">
+
+<h2>Our Features</h2>
+
+<p>
+
+Everything you need for a smarter EV charging experience.
+
+</p>
+
+</div>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="icon">
+
+<i class="fa-solid fa-location-dot"></i>
+
+</div>
+
+<h3>Nearby Stations</h3>
+
+<p>
+
+Discover EV charging stations near your current location with live availability.
+
+</p>
+
+<a href="view-stations.html" data-requires-auth="true">
+
+Explore →
+
+</a>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="icon">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+</div>
+
+<h3>Easy Booking</h3>
+
+<p>
+
+Reserve your charging slot within seconds and avoid waiting in queues.
+
+</p>
+
+<a href="booking.html" data-requires-auth="true">
+
+Book Now →
+
+</a>
+
+</div>
+
+<div class="feature-card">
+
+<div class="icon">
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+
+<h3>User Dashboard</h3>
+
+<p>
+
+Manage bookings, payment history and favourite stations in one place.
+
+</p>
+
+<a href="layout.html" data-requires-auth="true">
+
+Open Dashboard →
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<script src="js/index.js"></script>
+
+<!-- ===========================
+        STATISTICS
+=========================== -->
+
+<section class="statistics">
+
+<div class="stats-container">
+
+<div class="stat-card">
+
+<h2>250+</h2>
+
+<p>Charging Stations</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>5,000+</h2>
+
+<p>Happy Users</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>15,000+</h2>
+
+<p>Bookings Completed</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>99%</h2>
+
+<p>Customer Satisfaction</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+        WHY CHOOSE US
+=========================== -->
+
+<section class="why-us">
+
+<div class="section-title">
+
+<h2>Why Choose EV Finder?</h2>
+
+<p>
+
+A modern platform designed for electric vehicle owners.
+
+</p>
+
+</div>
+
+<div class="why-grid">
+
+<div class="why-card">
+
+<i class="fa-solid fa-bolt"></i>
+
+<h3>Fast Charging</h3>
+
+<p>
+
+Supports AC and DC fast charging stations.
+
+</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-map-location-dot"></i>
+
+<h3>Live Navigation</h3>
+
+<p>
+
+Navigate directly to nearby charging stations.
+
+</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h3>Secure Booking</h3>
+
+<p>
+
+Your booking information is safely stored.
+
+</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-mobile-screen-button"></i>
+
+<h3>Easy Access</h3>
+
+<p>
+
+Use EV Finder from desktop, tablet or mobile.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+<!-- ===========================
+        POPULAR STATIONS
+=========================== -->
+
+<section class="stations">
+
+<div class="section-title">
+
+<h2>Popular Charging Stations</h2>
+
+<p>Top-rated charging stations trusted by EV users.</p>
+
+</div>
+
+<div class="station-grid">
+
+<div class="station-card">
+
+<img src="images\hero-car.png">
+
+<div class="station-content">
+
+<h3>EV Hub Chennai</h3>
+
+<p><i class="fa-solid fa-location-dot"></i> Chennai</p>
+
+<p><i class="fa-solid fa-bolt"></i> DC Fast Charger</p>
+
+<p><i class="fa-solid fa-star"></i> 4.9 Rating</p>
+
+<a href="view-stations.html" class="station-btn" data-requires-auth="true">
+View Details
+</a>
+
+</div>
+
+</div>
+
+<div class="station-card">
+
+<img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=900">
+
+<div class="station-content">
+
+<h3>Green Energy Station</h3>
+
+<p><i class="fa-solid fa-location-dot"></i> Coimbatore</p>
+
+<p><i class="fa-solid fa-bolt"></i> AC + DC Charger</p>
+
+<p><i class="fa-solid fa-star"></i> 4.8 Rating</p>
+
+<a href="view-stations.html" class="station-btn" data-requires-auth="true">
+View Details
+</a>
+
+</div>
+
+</div>
+
+<div class="station-card">
+
+<img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=900">
+
+<div class="station-content">
+
+<h3>Smart Charge Hub</h3>
+
+<p><i class="fa-solid fa-location-dot"></i> Bangalore</p>
+
+<p><i class="fa-solid fa-bolt"></i> Ultra Fast Charger</p>
+
+<p><i class="fa-solid fa-star"></i> 4.9 Rating</p>
+
+<a href="view-stations.html" class="station-btn" data-requires-auth="true">
+View Details
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ===========================
+      TESTIMONIALS
+=========================== -->
+
+<section class="testimonials">
+
+<div class="section-title">
+
+<h2>What Our Users Say</h2>
+
+<p>
+
+Trusted by EV owners across India.
+
+</p>
+
+</div>
+
+<div class="testimonial-grid">
+
+<div class="testimonial-card">
+
+<img src="https://randomuser.me/api/portraits/men/31.jpg">
+
+<h3>Rahul Kumar</h3>
+
+<p>
+
+★★★★★
+
+</p>
+
+<p>
+
+Booking was quick and the AI recommendation saved me lots of time.
+
+</p>
+
+</div>
+
+<div class="testimonial-card">
+
+<img src="https://randomuser.me/api/portraits/women/65.jpg">
+
+<h3>Priya Sharma</h3>
+
+<p>
+
+★★★★★
+
+</p>
+
+<p>
+
+The dashboard is easy to use and finding charging stations is effortless.
+
+</p>
+
+</div>
+
+<div class="testimonial-card">
+
+<img src="https://randomuser.me/api/portraits/men/42.jpg">
+
+<h3>Arun Raj</h3>
+
+<p>
+
+★★★★★
+
+</p>
+
+<p>
+
+The booking experience was smooth and professional.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+        CALL TO ACTION
+=========================== -->
+
+<section class="cta">
+
+<h2>
+
+Ready to Charge Your EV?
+
+</h2>
+
+<p>
+
+Join thousands of EV users already using EV Finder.
+
+</p>
+
+<a href="register.html"
+class="cta-btn">
+
+Create Free Account
+
+</a>
+
+</section>
+<!-- ===========================
+        CONTACT
+=========================== -->
+
+<section id="contact" class="contact">
+
+<div class="section-title">
+
+<h2>Contact Us</h2>
+
+<p>
+
+Need help? We'd love to hear from you.
+
+</p>
+
+</div>
+
+<div class="contact-container">
+
+<div class="contact-info">
+
+<h3>Get In Touch</h3>
+
+<p>
+
+<i class="fa-solid fa-location-dot"></i>
+
+Coimbatore, Tamil Nadu, India
+
+</p>
+
+<p>
+
+<i class="fa-solid fa-phone"></i>
+
++91 9876543210
+
+</p>
+
+<p>
+
+<i class="fa-solid fa-envelope"></i>
+
+support@evfinder.com
+
+</p>
+
+<p>
+
+<i class="fa-solid fa-clock"></i>
+
+Open 24 x 7
+
+</p>
+
+</div>
+
+<div class="contact-form">
+
+<form>
+
+<input
+type="text"
+placeholder="Your Name"
+required>
+
+<input
+type="email"
+placeholder="Email Address"
+required>
+
+<textarea
+rows="6"
+placeholder="Your Message"></textarea>
+
+<button type="submit">
+
+Send Message
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+        FOOTER
+=========================== -->
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+
+<h2>
+
+⚡ EV Finder
+
+</h2>
+
+<p>
+
+Smart EV Charging Platform
+
+for locating nearby stations,
+
+AI recommendations,
+
+online booking,
+
+and seamless charging.
+
+</p>
+
+</div>
+
+<div>
+
+<h3>
+
+Quick Links
+
+</h3>
+
+<ul>
+
+<li>
+
+<a href="index.html">
+
+Home
+
+</a>
+
+</li>
+
+<li>
+
+<a href="view-stations.html">
+
+Stations
+
+</a>
+
+</li>
+
+<li>
+
+<a href="recommendation.html">
+
+AI Recommendation
+
+</a>
+
+</li>
+
+<li>
+
+<a href="booking.html">
+
+Booking
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3>
+
+Follow Us
+
+</h3>
+
+<div class="social">
+
+<a href="#">
+
+<i class="fab fa-facebook-f"></i>
+
+</a>
+
+<a href="#">
+
+<i class="fab fa-instagram"></i>
+
+</a>
+
+<a href="#">
+
+<i class="fab fa-linkedin"></i>
+
+</a>
+
+<a href="#">
+
+<i class="fab fa-twitter"></i>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<hr>
+
+<p class="copyright">
+
+© 2026 EV Finder
+
+All Rights Reserved.
+
+</p>
+
+</footer>
+
+<button
+id="topBtn">
+
+<i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<script>
+
+const topBtn =
+document.getElementById("topBtn");
+
+window.onscroll=function(){
+
+if(document.documentElement.scrollTop>300){
+
+topBtn.style.display="block";
+
+}
+
+else{
+
+topBtn.style.display="none";
+
+}
+
+};
+
+topBtn.onclick=function(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+</script>
+
+</body>
+<script>
+
+const topBtn =
+document.getElementById("topBtn");
+
+window.onscroll=function(){
+
+if(document.documentElement.scrollTop>300){
+
+topBtn.style.display="block";
+
+}
+else{
+
+topBtn.style.display="none";
+
+}
+
+};
+
+topBtn.onclick=function(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+</script>
+<script src="js/responsive.js"></script>
+</body>
+
+</html>
+
+</html>

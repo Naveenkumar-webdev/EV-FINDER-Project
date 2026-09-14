@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>EV Finder | Station Details</title>
+
+<link rel="stylesheet"
+href="css/station-details.css">
+<link rel="stylesheet"
+href="css/responsive.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<i class="fa-solid fa-bolt"></i>
+
+EV Finder
+
+</div>
+
+<nav>
+
+<a href="layout.html">Dashboard</a>
+
+<a href="view-stations.html">Stations</a>
+
+<a href="recommendation.html">AI Recommendation</a>
+
+<a href="history.html">Bookings</a>
+
+</nav>
+
+</header>
+
+<section class="banner">
+
+<h1>Charging Station Details</h1>
+
+<p>Complete information about your selected charging station.</p>
+
+</section>
+
+<div class="container">
+
+<div class="image-section">
+
+<img
+id="stationImage"
+src="https://images.unsplash.com/photo-1593941707882-a56bbc8dfb6c?w=1200"
+alt="Station">
+
+</div>
+
+<div class="details">
+
+<h2 id="stationName">
+
+EV Fast Charge
+
+</h2>
+
+<div class="info">
+
+<p>
+
+<i class="fa-solid fa-location-dot"></i>
+
+<span id="stationLocation">
+
+Coimbatore
+
+</span>
+
+</p>
+
+<p>
+
+<i class="fa-solid fa-bolt"></i>
+
+<span id="chargerType">
+
+DC Fast Charger
+
+</span>
+
+</p>
+
+<p>
+
+<i class="fa-solid fa-star"></i>
+
+4.8 / 5 Rating
+
+</p>
+
+<p>
+
+<i class="fa-solid fa-plug-circle-bolt"></i>
+
+Available Slots :
+
+<span id="availableSlots">
+
+6
+
+</span>
+
+</p>
+
+<p>
+
+<i class="fa-solid fa-phone"></i>
+
++91 9876543210
+
+</p>
+
+<p>
+
+<i class="fa-solid fa-clock"></i>
+
+Open : 24 x 7
+
+</p>
+
+</div>
+
+<div class="buttons">
+
+<button
+class="book-btn"
+onclick="goBooking()">
+
+Book Now
+
+</button>
+
+<button
+class="map-btn"
+onclick="openMap()">
+
+Open Map
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<section class="description">
+
+<h2>
+
+About This Station
+
+</h2>
+
+<p>
+
+This charging station supports both AC and DC charging for all major electric vehicles.
+It offers fast charging, secure parking, CCTV surveillance, waiting lounge,
+clean restrooms and 24×7 customer support.
+
+</p>
+
+</section>
+
+<script src="js/station-details.js"></script>
+<script src="js/responsive.js"></script>
+</body>
+
+</html>

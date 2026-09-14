@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f5d82">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+
+  <title>Admin Portal | EV Finder</title>
+
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+  <header>
+    <h2>
+      <i class="fa-solid fa-charging-station"></i> EV Finder Admin Portal
+      <span class="admin-badge">ADMIN</span>
+    </h2>
+    <div class="nav-links">
+      <a href="#stations-section" class="active"><i class="fa-solid fa-layer-group"></i> Stations</a>
+      <a href="#bookings-section"><i class="fa-solid fa-list-check"></i> Station Bookings</a>
+      <a href="layout.html"><i class="fa-solid fa-gauge-high"></i> User View</a>
+      <a href="index.html" onclick="localStorage.removeItem('loggedUser')" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </a>
+    </div>
+  </header>
+
+  <div class="main-wrapper">
+
+    <!-- KPI Stats Summary -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon icon-blue">
+          <i class="fa-solid fa-charging-station"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="statTotalStations">0</h3>
+          <p>Total EV Stations</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-green">
+          <i class="fa-solid fa-calendar-check"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="statTotalBookings">0</h3>
+          <p>Total Bookings</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-amber">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="statActiveBookings">0</h3>
+          <p>Active / Confirmed</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-red">
+          <i class="fa-solid fa-ban"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="statCancelledBookings">0</h3>
+          <p>Cancelled Bookings</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stations Section (Form + Table) -->
+    <div class="grid-container" id="stations-section">
+      
+      <!-- Add Station Form -->
+      <div class="form-box">
+        <h3><i class="fa-solid fa-plus-circle"></i> Add New Station</h3>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;"><i class="fa-solid fa-charging-station"></i> Station Name</label>
+          <input type="text" id="name" placeholder="Station Name (e.g. Shell Recharge)" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;"><i class="fa-solid fa-location-dot"></i> Location / City</label>
+          <input type="text" id="location" placeholder="Location / City (e.g. Bangalore)" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: #0f5d82; display: block; margin-bottom: 4px;"><i class="fa-solid fa-phone"></i> Station Contact Number</label>
+          <input type="text" id="contactNumber" placeholder="Contact Number (e.g. +91 9842101234)" required style="border: 2px solid #0f5d82; background: #f0f9ff;">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;"><i class="fa-solid fa-bolt"></i> Charger Type</label>
+          <select id="chargerType" required>
+            <option value="">Select Charger Type</option>
+            <option value="DC">DC Fast Charger (Car)</option>
+            <option value="AC">AC Standard (Car)</option>
+            <option value="Ultra Fast Charging">Ultra Fast Charging (Car)</option>
+            <option value="15A Bike Socket">15A Standard Socket (Bike)</option>
+            <option value="Fast Bike DC">Fast DC Bike Charger (Ather/Ola)</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;"><i class="fa-solid fa-car-side"></i> Vehicle Compatibility</label>
+          <select id="supportedVehicles" required>
+            <option value="Car,Bike">🚗🛵 Both Car & Bike Compatible</option>
+            <option value="Bike">🛵 EV Bike / Scooter Only</option>
+            <option value="Car">🚘 EV Car Only</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;"><i class="fa-solid fa-hashtag"></i> Available Slots</label>
+          <input type="number" id="availableSlots" placeholder="Available Slots" min="0" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;"><i class="fa-solid fa-image"></i> Station Image URL</label>
+          <input type="text" id="imageUrl" placeholder="Image URL (.jpg or .jpeg)">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;"><i class="fa-solid fa-map-pin"></i> Coordinates (Lat & Lng)</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="number" step="any" id="lat" placeholder="Latitude (e.g. 12.9716)" style="margin-bottom: 0;">
+            <input type="number" step="any" id="lng" placeholder="Longitude (e.g. 77.5946)" style="margin-bottom: 0;">
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="addStation()" style="margin-top: 14px;">
+          <i class="fa-solid fa-plus"></i> Add Station
+        </button>
+      </div>
+
+      <!-- Stations Table -->
+      <div class="full-width-section" style="margin-bottom: 0;">
+        <div class="section-header">
+          <h3><i class="fa-solid fa-map-location-dot"></i> Manage EV Stations</h3>
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span class="scroll-hint"><i class="fa-solid fa-arrows-left-right"></i> Scroll sideways for full table</span>
+            <span style="font-size: 0.88rem; color: var(--muted);" id="stationCountLabel">0 Stations</span>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Station Name</th>
+                <th>Location / City</th>
+                <th>Contact</th>
+                <th>Type</th>
+                <th>Slots</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="stationTable">
+              <tr>
+                <td colspan="6" style="text-align: center; padding: 20px;">Loading stations...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- All Stations Bookings Section -->
+    <div class="full-width-section" id="bookings-section">
+      <div class="section-header">
+        <div>
+          <h3><i class="fa-solid fa-receipt"></i> All Stations Bookings</h3>
+          <span class="scroll-hint" style="margin-top: 6px;"><i class="fa-solid fa-arrows-left-right"></i> Scroll sideways for full table</span>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="toolbar">
+          <div class="search-input">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="bookingSearchInput" placeholder="Search customer, station, vehicle..." onkeyup="filterBookings()">
+          </div>
+
+          <select id="stationFilterSelect" class="filter-select" onchange="filterBookings()">
+            <option value="ALL">All Stations</option>
+          </select>
+
+          <select id="statusFilterSelect" class="filter-select" onchange="filterBookings()">
+            <option value="ALL">All Statuses</option>
+            <option value="CONFIRMED">Confirmed / Paid</option>
+            <option value="COMPLETED">Completed</option>
+            <option value="CANCELLED">Cancelled</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Customer</th>
+              <th>Station</th>
+              <th>Charger</th>
+              <th>Vehicle</th>
+              <th>Date & Slot</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="allBookingsTable">
+            <tr>
+              <td colspan="9" style="text-align: center; padding: 20px;">Loading station bookings...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/admin.js"></script>
+  <script src="js/responsive.js"></script>
+</body>
+</html>

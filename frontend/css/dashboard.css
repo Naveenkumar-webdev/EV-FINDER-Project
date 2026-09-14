@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #eef7fb;
+  --surface: #ffffff;
+  --surface-soft: #f4fbff;
+  --primary: #0f5d82;
+  --accent: #16a34a;
+  --text: #132a40;
+  --muted: #64748b;
+  --border: rgba(15,23,42,0.08);
+  --shadow: 0 28px 70px rgba(15,23,42,0.12);
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #f4fbff 0%, #eef7fb 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+header,
+.header {
+  background: linear-gradient(135deg, #0f5d82, #16a34a);
+  color: white;
+  padding: 24px 30px;
+  text-align: center;
+}
+
+header h1,
+.header h1 {
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+header p,
+.header p {
+  margin-top: 10px;
+  color: rgba(255,255,255,0.92);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  width: 92%;
+  max-width: 1240px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 80px rgba(15,23,42,0.16);
+}
+
+.card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+button {
+  padding: 12px 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background .3s ease, transform .3s ease;
+}
+
+button:hover {
+  background: #114f6f;
+  transform: translateY(-1px);
+}
+
+.logout button {
+  background: #dc2626;
+}
+
+.logout button:hover {
+  background: #b91c1c;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+  margin: 16px 0;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.legend {
+  position: absolute;
+  top: 90px;
+  left: 20px;
+  background: var(--surface);
+  padding: 16px;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(15,23,42,0.12);
+  z-index: 999;
+}

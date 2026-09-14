@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV Finder | AI Recommendation</title>
+
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/recommendation.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <i class="fa-solid fa-bolt"></i>
+      <h2>EV Finder</h2>
+    </div>
+    <ul>
+      <li>
+        <a href="layout.html">
+          <i class="fa-solid fa-house"></i>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="view-stations.html">
+          <i class="fa-solid fa-location-dot"></i>
+          Nearby Stations
+        </a>
+      </li>
+      <li class="active">
+        <a href="recommendation.html">
+          <i class="fa-solid fa-robot"></i>
+          AI Recommendation
+        </a>
+      </li>
+      <li>
+        <a href="booking.html">
+          <i class="fa-solid fa-calendar-check"></i>
+          Book Charging
+        </a>
+      </li>
+      <li>
+        <a href="history.html">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          My Bookings
+        </a>
+      </li>
+      <li>
+        <a href="profile.html">
+          <i class="fa-solid fa-user"></i>
+          Profile
+        </a>
+      </li>
+      <li>
+        <a href="index.html" onclick="localStorage.removeItem('loggedUser')">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="topbar">
+      <h1>🤖 AI Recommendation</h1>
+      <div class="profile" onclick="window.location.href='profile.html'">
+        <i class="fa-solid fa-circle-user"></i>
+      </div>
+    </div>
+
+    <!-- Recommendation Box -->
+    <div class="recommend-card">
+      <div class="left">
+        <img src="images/images.jpeg" alt="Station">
+      </div>
+      <div class="right">
+        <h2 id="stationName">Loading...</h2>
+        <div class="info">
+          <p><i class="fa-solid fa-location-dot"></i> Location: <span id="stationLocation">Loading...</span></p>
+          <p><i class="fa-solid fa-bolt"></i> Charger: <span id="chargerType">Loading...</span></p>
+          <p><i class="fa-solid fa-road"></i> Distance: <span id="distance">2.1 km</span></p>
+          <p><i class="fa-solid fa-star"></i> Rating: 4.8 / 5</p>
+          <p><i class="fa-solid fa-plug-circle-bolt"></i> Available Slots: <span id="availableSlots">Loading...</span></p>
+        </div>
+
+        <div class="reason">
+          <h3>Why AI Recommended?</h3>
+          <ul>
+            <li>✔ Nearest charging station</li>
+            <li>✔ Highest available slots</li>
+            <li>✔ Fast charging support</li>
+            <li>✔ Excellent customer rating</li>
+            <li>✔ 24×7 service available</li>
+          </ul>
+        </div>
+
+        <div class="buttons">
+          <button class="map-btn" onclick="openMap()">Open Map</button>
+          <button class="book-btn" onclick="bookNow()">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/recommendation.js"></script>
+<script src="js/responsive.js"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f5d82">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+
+<title>EV Finder | Book Charging</title>
+
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/booking.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <i class="fa-solid fa-bolt"></i>
+      <h2>EV Finder</h2>
+    </div>
+    <ul>
+      <li>
+        <a href="layout.html">
+          <i class="fa-solid fa-house"></i>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="view-stations.html">
+          <i class="fa-solid fa-location-dot"></i>
+          Nearby Stations
+        </a>
+      <li class="active">
+        <a href="booking.html">
+          <i class="fa-solid fa-calendar-check"></i>
+          Book Charging
+        </a>
+      </li>
+      <li>
+        <a href="history.html">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          My Bookings
+        </a>
+      </li>
+      <li>
+        <a href="profile.html">
+          <i class="fa-solid fa-user"></i>
+          Profile
+        </a>
+      </li>
+      <li>
+        <a href="index.html" onclick="localStorage.removeItem('loggedUser')">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="topbar">
+      <h1>⚡ Book EV Charging Slot</h1>
+      <div class="profile" onclick="window.location.href='profile.html'">
+        <i class="fa-solid fa-circle-user"></i>
+      </div>
+    </div>
+
+    <!-- Booking Form & Summary Panel -->
+    <div class="booking-container">
+      
+      <!-- Booking Form -->
+      <div class="booking-form">
+        <h2>Booking Details</h2>
+        <form id="bookingForm">
+          <div class="input-group">
+            <label>Customer Name</label>
+            <input type="text" id="customerName" required>
+          </div>
+
+          <div class="input-group">
+            <label>Vehicle Number</label>
+            <input type="text" id="vehicleNumber" placeholder="TN12BN1234" required>
+          </div>
+
+          <div class="input-group">
+            <label>Vehicle Category</label>
+            <select id="vehicleCategory" onchange="onVehicleCategoryChange()">
+              <option value="Car">🚘 EV Car (4-Wheeler)</option>
+              <option value="Bike">🛵 EV Bike / Scooter (2-Wheeler)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Charging Station</label>
+            <select id="station" required>
+              <option value="">Select Station</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Kallakurichi">Kallakurichi</option>
+              <option value="Salem">Salem</option>
+              <option value="Namakkal">Namakkal</option>
+              <option value="Erode">Erode</option>
+              <option value="Coimbatore">Coimbatore</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Charging Type</label>
+            <select id="type">
+              <option value="DC">DC Fast Charging (Car)</option>
+              <option value="AC">AC Standard Charging</option>
+              <option value="Ultra Fast Charging">Ultra Fast Charging</option>
+              <option value="15A Bike Socket">15A Standard Socket (Bike)</option>
+              <option value="Fast Bike DC">Fast DC Bike Charger (Ather/Ola)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Charging Hours</label>
+            <select id="chargingHours" required>
+              <option value="">Select Hours</option>
+              <option value="1 Hour">1 Hour</option>
+              <option value="2 Hours">2 Hours</option>
+              <option value="3 Hours">3 Hours</option>
+              <option value="4 Hours">4 Hours</option>
+              <option value="5 Hours">5 Hours</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Booking Date</label>
+            <input type="date" id="bookingDate" required>
+          </div>
+
+          <h3>Select Charging Start Time</h3>
+          <p id="slotNotice" class="slot-notice" style="font-weight: 600;">Choose your desired start time (Hour & Minute).</p>
+
+          <div class="time-picker-container" style="display: flex; gap: 10px; align-items: center; background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 85px;">
+              <label style="font-size: 12px; color: #64748b; font-weight: 700; display: block; margin-bottom: 4px;">Hour</label>
+              <select id="slotHour" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 15px; font-weight: 600; background: white;" onchange="updateSelectedSlotTime()">
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10" selected>10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+
+            <div style="font-size: 22px; font-weight: bold; color: #475569; margin-top: 16px;">:</div>
+
+            <div style="flex: 1; min-width: 85px;">
+              <label style="font-size: 12px; color: #64748b; font-weight: 700; display: block; margin-bottom: 4px;">Minute</label>
+              <select id="slotMinute" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 15px; font-weight: 600; background: white;" onchange="updateSelectedSlotTime()">
+                <option value="00" selected>00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+              </select>
+            </div>
+
+            <div style="flex: 1; min-width: 85px;">
+              <label style="font-size: 12px; color: #64748b; font-weight: 700; display: block; margin-bottom: 4px;">AM / PM</label>
+              <select id="slotAmpm" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 15px; font-weight: 600; background: white;" onchange="updateSelectedSlotTime()">
+                <option value="AM">AM</option>
+                <option value="PM" selected>PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="booking-actions">
+            <button type="button" class="btn-cancel-page" onclick="window.location.href='layout.html'">Cancel</button>
+            <button type="button" class="confirm-btn" onclick="confirmBooking()">Continue to Payment</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Booking Summary -->
+      <div class="summary">
+        <h2>Booking Summary</h2>
+        <div class="summary-card">
+          <p id="sName">Name : -</p>
+          <p id="sVehicle">Vehicle : -</p>
+          <p id="sCategory">Category : -</p>
+          <p id="sStation">Station : -</p>
+          <p id="sType">Charging : -</p>
+          <p id="sHours">Hours : -</p>
+          <p id="sSlot">Slot : -</p>
+          <p id="sAmount">Amount : -</p>
+          <p id="sDate">Date : -</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="js/booking.js"></script>
+<script src="js/responsive.js"></script>
+</body>
+</html>

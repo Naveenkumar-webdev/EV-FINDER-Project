@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV Finder | Payment</title>
+
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/payment.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <i class="fa-solid fa-bolt"></i>
+      <h2>EV Finder</h2>
+    </div>
+    <ul>
+      <li>
+        <a href="layout.html">
+          <i class="fa-solid fa-house"></i>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="view-stations.html">
+          <i class="fa-solid fa-location-dot"></i>
+          Nearby Stations
+        </a>
+      <li>
+        <a href="booking.html">
+          <i class="fa-solid fa-calendar-check"></i>
+          Book Charging
+        </a>
+      </li>
+      <li>
+        <a href="history.html">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          My Bookings
+        </a>
+      </li>
+      <li>
+        <a href="profile.html">
+          <i class="fa-solid fa-user"></i>
+          Profile
+        </a>
+      </li>
+      <li>
+        <a href="index.html" onclick="localStorage.removeItem('loggedUser')">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="topbar">
+      <h1>💳 Secure Checkout</h1>
+      <div class="profile" onclick="window.location.href='profile.html'">
+        <i class="fa-solid fa-circle-user"></i>
+      </div>
+    </div>
+
+    <!-- Checkout Dashboard Layout -->
+    <div class="checkout-container">
+      
+      <!-- Left Panel: Summary -->
+      <div class="checkout-summary-card">
+        <div class="secure-badge">
+          <i class="fa-solid fa-lock"></i> SECURE CHEKOUT
+        </div>
+        <h2>Booking Summary</h2>
+        
+        <div class="booking-specs">
+          <div class="spec-row">
+            <span class="label">Booking ID</span>
+            <span class="value" id="bId">-</span>
+          </div>
+          <div class="spec-row">
+            <span class="label">Location</span>
+            <span class="value" id="bStation">-</span>
+          </div>
+          <div class="spec-row">
+            <span class="label">Slot Time</span>
+            <span class="value" id="bSlot">-</span>
+          </div>
+          <div class="spec-row price">
+            <span class="label">Grand Total</span>
+            <span class="value" id="bAmount">₹0.00</span>
+          </div>
+        </div>
+
+        <div class="info-notice">
+          <i class="fa-solid fa-info-circle"></i>
+          <p>Please review your station location and slot details before completing the payment process.</p>
+        </div>
+      </div>
+
+      <!-- Right Panel: Payment Form -->
+      <div class="checkout-form-card">
+        <div>
+          <h2>Payment Details</h2>
+
+          <!-- Amount Input (Hidden/Read-only representation) -->
+          <div class="amount-field-wrapper">
+            <label>Payment Amount (INR)</label>
+            <div class="amount-input-box">
+              <span>₹</span>
+              <input id="paymentAmount" type="number" min="0" step="0.01" readonly>
+            </div>
+          </div>
+
+          <h3>Choose Payment Method</h3>
+          <div class="methods">
+            <button onclick="selectMethod('card', event)" class="active">
+              <i class="fa-solid fa-credit-card"></i> Card
+            </button>
+            <button onclick="selectMethod('upi', event)">
+              <i class="fa-solid fa-mobile-screen"></i> UPI
+            </button>
+            <button onclick="selectMethod('wallet', event)">
+              <i class="fa-solid fa-wallet"></i> Wallet
+            </button>
+          </div>
+
+          <!-- Dynamic Payment Sections -->
+          <!-- Card Form -->
+          <div id="cardSection" class="payment-section">
+            <div class="form-inputs">
+              <input type="text" placeholder="Card Holder Name" required>
+              <input type="text" placeholder="Card Number" maxlength="16" required>
+              <div class="exp-cvv-row">
+                <input type="text" placeholder="MM/YY" maxlength="5" required>
+                <input type="password" placeholder="CVV" maxlength="3" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- UPI Form with Inline SVG QR Code & Demo Alert -->
+          <div id="upiQR" class="upi-qr-wrapper hidden">
+            <div class="qr-box">
+              <!-- High-Fidelity Inline SVG QR Code -->
+              <svg width="150" height="150" viewBox="0 0 100 100" class="qr-svg">
+                <!-- Finder Patterns -->
+                <rect x="5" y="5" width="26" height="26" fill="#0f5d82" rx="4" />
+                <rect x="9" y="9" width="18" height="18" fill="#ffffff" rx="2" />
+                <rect x="13" y="13" width="10" height="10" fill="#10b981" rx="1.5" />
+
+                <rect x="69" y="5" width="26" height="26" fill="#0f5d82" rx="4" />
+                <rect x="73" y="9" width="18" height="18" fill="#ffffff" rx="2" />
+                <rect x="77" y="13" width="10" height="10" fill="#10b981" rx="1.5" />
+
+                <rect x="5" y="69" width="26" height="26" fill="#0f5d82" rx="4" />
+                <rect x="9" y="73" width="18" height="18" fill="#ffffff" rx="2" />
+                <rect x="13" y="77" width="10" height="10" fill="#10b981" rx="1.5" />
+
+                <!-- Random data blocks -->
+                <rect x="36" y="5" width="8" height="8" fill="#0f172a" rx="1" />
+                <rect x="48" y="12" width="6" height="6" fill="#10b981" rx="1" />
+                <rect x="58" y="6" width="6" height="6" fill="#0f172a" rx="1" />
+                
+                <rect x="38" y="24" width="8" height="6" fill="#0f172a" rx="1" />
+                <rect x="50" y="20" width="6" height="8" fill="#0f172a" rx="1.5" />
+                <rect x="60" y="25" width="5" height="5" fill="#10b981" rx="1" />
+
+                <rect x="38" y="38" width="6" height="6" fill="#0f172a" rx="1" />
+                <rect x="48" y="48" width="12" height="12" fill="#0f5d82" rx="2" />
+                <rect x="64" y="38" width="8" height="8" fill="#0f172a" rx="1.5" />
+
+                <rect x="5" y="38" width="8" height="8" fill="#0f172a" rx="1.5" />
+                <rect x="18" y="44" width="6" height="6" fill="#10b981" rx="1" />
+                <rect x="28" y="38" width="6" height="6" fill="#0f172a" rx="1" />
+
+                <rect x="76" y="38" width="6" height="6" fill="#0f172a" rx="1" />
+                <rect x="86" y="44" width="8" height="8" fill="#10b981" rx="1.5" />
+
+                <rect x="5" y="52" width="6" height="8" fill="#10b981" rx="1" />
+                <rect x="18" y="56" width="8" height="6" fill="#0f172a" rx="1" />
+
+                <rect x="36" y="69" width="6" height="6" fill="#10b981" rx="1" />
+                <rect x="46" y="78" width="8" height="8" fill="#0f172a" rx="1.5" />
+                <rect x="58" y="70" width="6" height="6" fill="#0f172a" rx="1" />
+
+                <rect x="70" y="58" width="8" height="8" fill="#0f172a" rx="1.5" />
+                <rect x="82" y="69" width="6" height="6" fill="#10b981" rx="1" />
+                <rect x="76" y="80" width="12" height="12" fill="#0f5d82" rx="2" />
+              </svg>
+              <p class="scan-txt">Scan QR Code using any UPI App</p>
+            </div>
+            
+            <!-- Warning Box: Demo Mode Notice -->
+            <div class="demo-warning-alert">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span><strong>DEMO ONLY:</strong> This is a simulation project. Please do not make any actual payments.</span>
+            </div>
+          </div>
+
+          <div id="upiSection" class="payment-section hidden">
+            <div class="form-inputs">
+              <input type="text" placeholder="Enter UPI ID (e.g. name@upi)" required>
+            </div>
+          </div>
+
+          <!-- Wallet Section -->
+          <div id="walletSection" class="payment-section hidden">
+            <div class="wallet-balance-box">
+              <i class="fa-solid fa-wallet"></i>
+              <div>
+                <h4>EV Wallet</h4>
+                <p>Available Balance: ₹500.00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="pay-btn" onclick="payNow()">
+          <i class="fa-solid fa-shield-halved"></i> Complete Payment
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="js/payment.js"></script>
+<script src="js/responsive.js"></script>
+</body>
+</html>

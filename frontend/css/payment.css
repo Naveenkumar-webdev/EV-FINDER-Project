@@ -1,0 +1,392 @@
+/* Premium Checkout Design System */
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --primary: #0f5d82;
+  --primary-glow: rgba(15, 93, 130, 0.15);
+  --accent: #10b981;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: rgba(15, 23, 42, 0.06);
+  --shadow: 0 25px 60px rgba(15, 23, 42, 0.05);
+}
+
+.checkout-container {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 30px;
+  margin-top: 15px;
+  align-items: start;
+}
+
+/* Left Panel: Checkout Summary Card */
+.checkout-summary-card {
+  background: var(--surface);
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.checkout-summary-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #10b981 0%, #0f5d82 100%);
+}
+
+.secure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-glow);
+  padding: 6px 12px;
+  border-radius: 99px;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+}
+
+.checkout-summary-card h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.booking-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.spec-row .label {
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.spec-row .value {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.spec-row.price {
+  border-bottom: none;
+  padding-top: 10px;
+}
+
+.spec-row.price .label {
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.spec-row.price .value {
+  font-size: 1.45rem;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.info-notice {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.info-notice i {
+  color: var(--primary);
+  font-size: 1.1rem;
+  margin-top: 2px;
+}
+
+.info-notice p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Right Panel: Checkout Form Card */
+.checkout-form-card {
+  background: var(--surface);
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 575px;
+}
+
+.checkout-form-card h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.amount-field-wrapper {
+  margin-bottom: 28px;
+}
+
+.amount-field-wrapper label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.amount-input-box {
+  display: flex;
+  align-items: center;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 6px 18px;
+}
+
+.amount-input-box span {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-right: 6px;
+}
+
+.amount-input-box input {
+  border: none;
+  background: transparent;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+}
+
+.checkout-form-card h3 {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.methods {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.methods button {
+  flex: 1;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface-soft);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.25s;
+}
+
+.methods button:hover {
+  background: #ffffff;
+  border-color: rgba(15, 93, 130, 0.2);
+}
+
+.methods button.active {
+  background: var(--primary-glow);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Payment Sections & Inputs */
+.payment-section {
+  margin-bottom: 30px;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-inputs input {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-soft);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  outline: none;
+  width: 100%;
+}
+
+.form-inputs input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(15, 93, 130, 0.15);
+  background: #ffffff;
+}
+
+.exp-cvv-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* UPI QR Code Container */
+.upi-qr-wrapper {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.qr-box {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  display: inline-block;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.02);
+}
+
+.qr-svg {
+  display: block;
+  margin: 0 auto 12px;
+}
+
+.scan-txt {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* Demo Warning Alert Banner */
+.demo-warning-alert {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  margin-top: 18px;
+}
+
+.demo-warning-alert i {
+  color: #d97706;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.demo-warning-alert span {
+  font-size: 0.8rem;
+  color: #b45309;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Wallet Box */
+.wallet-balance-box {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.wallet-balance-box i {
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+
+.wallet-balance-box h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.wallet-balance-box p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Bottom Action button */
+.pay-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 18px;
+  border-radius: 20px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.25);
+  transition: all 0.25s;
+}
+
+.pay-btn:hover {
+  box-shadow: 0 14px 35px rgba(16, 185, 129, 0.35);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 980px) {
+  .checkout-container {
+    grid-template-columns: 1fr;
+  }
+}

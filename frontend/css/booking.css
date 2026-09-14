@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #eef7fb;
+  --surface: #ffffff;
+  --primary: #0f5d82;
+  --primary-strong: #114f6f;
+  --accent: #16a34a;
+  --text: #132a40;
+  --muted: #5b7187;
+  --border: rgba(15,23,42,0.1);
+  --shadow: 0 24px 55px rgba(15,23,42,0.12);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background: linear-gradient(180deg, #f7fbff 0%, #eef7fb 100%);
+  color:var(--text);
+}
+
+.booking-container{
+  display:flex;
+  gap:28px;
+  padding:15px 0;
+  flex-wrap:wrap;
+}
+
+.booking-form,
+.summary-card,
+.admin-panel,
+.payment-box{
+  background:var(--surface);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+
+.booking-form{
+  padding:30px;
+  width:420px;
+}
+
+.booking-form h2{
+  margin-bottom:18px;
+  color:var(--text);
+}
+
+.input-group{
+  margin-bottom:16px;
+  display:flex;
+  flex-direction:column;
+}
+
+.input-group label{
+  font-size:0.92rem;
+  margin-bottom:8px;
+  color:var(--muted);
+}
+
+.input-group input,
+.input-group select{
+  padding:14px 16px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  outline:none;
+  background:#f7fbff;
+}
+
+.input-group input:focus,
+.input-group select:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 4px rgba(15,93,130,0.1);
+}
+
+.slot-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin:18px 0;
+}
+
+.slot-grid button{
+  padding:12px;
+  border:none;
+  border-radius:16px;
+  background:#f3f7fb;
+  color:var(--text);
+  cursor:pointer;
+  transition:.25s;
+}
+
+.slot-grid button:hover{
+  background:var(--primary);
+  color:white;
+}
+
+.slot-grid button.disabled,
+.slot-grid button:disabled {
+  background:#e3e6eb;
+  color:#8a8f99;
+  cursor:not-allowed;
+  opacity:.65;
+}
+
+.slot-grid button.active{
+  background:var(--accent);
+  color:white;
+}
+
+.slot-grid button.active{
+  background:var(--accent);
+  color:white;
+}
+
+.confirm-btn{
+  width:100%;
+  padding:15px;
+  background:var(--primary);
+  color:white;
+  border:none;
+  border-radius:18px;
+  cursor:pointer;
+  font-size:1rem;
+}
+
+.confirm-btn:hover{
+  background:var(--primary-strong);
+}
+
+.summary{
+  width:320px;
+}
+
+.summary-card{
+  padding:24px;
+}
+
+.summary-card p{
+  margin-bottom:12px;
+  font-size:0.98rem;
+  color:var(--muted);
+}
+
+@media(max-width:900px){
+  .container{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .booking-form,
+  .summary{
+    width:100%;
+    max-width:520px;
+  }
+
+  .slot-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+/* Booked Slot Button Styling */
+.slot-grid button.booked,
+.slot-grid button.booked:disabled {
+  background: #ef4444;
+  color: white;
+  cursor: not-allowed;
+  opacity: .85;
+}
+
+/* Slot Legend box */
+.slot-legend {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+  margin-bottom: 24px;
+  background: #f7fbff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  font-size: 0.85rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.color-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.color-box.available {
+  background: #f3f7fb;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.color-box.selected {
+  background: var(--accent);
+}
+
+.color-box.booked {
+  background: #ef4444;
+}
+
+.color-box.disabled {
+  background: #e3e6eb;
+}
+
+/* Booking Actions and Cancel Page Button */
+.booking-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.btn-cancel-page {
+  padding: 15px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background .2s, transform .2s;
+  flex: 1;
+}
+
+.btn-cancel-page:hover {
+  background: rgba(15,23,42,0.08);
+}
+
+.confirm-btn {
+  flex: 2;
+}

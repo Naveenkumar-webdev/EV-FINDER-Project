@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #0ea5e9, #22c55e);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    width: 400px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.icon {
+    font-size: 60px;
+    color: #22c55e;
+}
+
+h1 {
+    margin: 10px 0;
+}
+
+.invoice {
+    margin-top: 20px;
+    text-align: left;
+    background: #f4f7fb;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    background: #0ea5e9;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0284c7;
+}
+
+.success-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.success-actions button {
+    margin-top: 0;
+    flex: 1;
+    font-weight: 600;
+}
+
+.btn-download {
+    background: #22c55e;
+}
+
+.btn-download:hover {
+    background: #16a34a;
+}
+
+.btn-dashboard {
+    background: #0ea5e9;
+}
+
+.btn-dashboard:hover {
+    background: #0284c7;
+}
+
+@media print {
+    body {
+        background: white;
+        height: auto;
+        display: block;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .card {
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
+    }
+
+    .icon, h1, .card > p, .success-actions {
+        display: none !important;
+    }
+
+    .invoice {
+        background: white;
+        border: 2px solid #333;
+        padding: 24px;
+        font-family: monospace;
+    }
+}

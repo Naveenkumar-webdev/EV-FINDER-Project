@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #eef7fb;
+  --surface: #ffffff;
+  --primary: #0f5d82;
+  --accent: #16a34a;
+  --text: #132a40;
+  --muted: #5b7187;
+  --border: rgba(15,23,42,0.1);
+  --shadow: 0 24px 55px rgba(15,23,42,0.12);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background: linear-gradient(180deg, #f6fbff 0%, #eef7fb 100%);
+  color:var(--text);
+}
+
+.history-container{
+  padding:20px 0;
+  display:flex;
+  justify-content:center;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:var(--surface);
+  box-shadow:var(--shadow);
+  border-radius:24px;
+  overflow:hidden;
+}
+
+th, td{
+  padding:18px;
+  border-bottom:1px solid rgba(15,23,42,0.08);
+  text-align:center;
+}
+
+th{
+  background:var(--surface-soft);
+  color:var(--text);
+  font-weight:700;
+}
+
+tr:last-child td{
+  border-bottom:none;
+}
+
+.status-pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:.92rem;
+  color:white;
+}
+
+.paid{
+  background:var(--accent);
+}
+
+.pending{
+  background:#dc2626;
+}
+
+@media(max-width:900px){
+  .container{
+    padding:24px;
+  }
+
+  table{
+    width:100%;
+  }
+}
+
+.cancel-btn {
+  padding: 8px 14px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.cancel-btn:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+}

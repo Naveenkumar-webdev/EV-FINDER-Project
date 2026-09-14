@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f5d82">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+
+<title>EV Finder | Nearby Stations</title>
+
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/view-stations.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <i class="fa-solid fa-bolt"></i>
+      <h2>EV Finder</h2>
+    </div>
+    <ul>
+      <li>
+        <a href="layout.html">
+          <i class="fa-solid fa-house"></i>
+          Dashboard
+        </a>
+      </li>
+      <li class="active">
+        <a href="view-stations.html">
+          <i class="fa-solid fa-location-dot"></i>
+          Nearby Stations
+        </a>
+      <li>
+        <a href="booking.html">
+          <i class="fa-solid fa-calendar-check"></i>
+          Book Charging
+        </a>
+      </li>
+      <li>
+        <a href="history.html">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          My Bookings
+        </a>
+      </li>
+      <li>
+        <a href="profile.html">
+          <i class="fa-solid fa-user"></i>
+          Profile
+        </a>
+      </li>
+      <li>
+        <a href="index.html" onclick="localStorage.removeItem('loggedUser')">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="topbar">
+      <h1>📍 Nearby Charging Stations</h1>
+      <div class="profile" onclick="window.location.href='profile.html'">
+        <i class="fa-solid fa-circle-user"></i>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <section class="filters">
+      <input type="text" id="search" placeholder="🔍 Search by Station or Location">
+      <select id="vehicleFilter">
+        <option value="">All Vehicles (Cars & Bikes)</option>
+        <option value="Bike">🛵 EV Bikes & Scooters</option>
+        <option value="Car">🚘 EV Cars</option>
+      </select>
+      <select id="chargerFilter">
+        <option value="">All Chargers</option>
+        <option value="DC">DC</option>
+        <option value="AC">AC</option>
+        <option value="Ultra Fast Charging">Ultra Fast Charging</option>
+        <option value="15A Bike Socket">15A Bike Socket</option>
+        <option value="Fast Bike DC">Fast Bike DC</option>
+      </select>
+    </section>
+
+    <!-- Grid Container -->
+    <section>
+      <div class="station-grid" id="stationContainer"></div>
+    </section>
+  </div>
+
+</div>
+
+<script src="js/view-stations.js"></script>
+<script src="js/responsive.js"></script>
+</body>
+</html>

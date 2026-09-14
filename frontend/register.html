@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>EV Finder | Register</title>
+
+<link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="left">
+
+<h1>Create Account</h1>
+
+<p>
+
+Join EV Finder and start booking charging stations in seconds.
+
+</p>
+
+<img src="images/register.jpg"
+alt="EV">
+
+</div>
+
+<div class="right">
+
+<div class="register-box">
+
+<h2>User Registration</h2>
+
+<form id="registerForm">
+
+<div class="input-box">
+
+<i class="fa-solid fa-user"></i>
+
+<input
+type="text"
+id="name"
+placeholder="Full Name"
+required>
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-envelope"></i>
+
+<input
+type="email"
+id="email"
+placeholder="Email"
+required>
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-phone"></i>
+
+<input
+type="text"
+id="phone"
+placeholder="Phone Number"
+maxlength="10"
+required>
+
+</div>
+
+<div class="input-box" id="vehicleBox">
+
+<i class="fa-solid fa-car"></i>
+
+<input
+type="text"
+id="vehicleNumber"
+placeholder="Vehicle Number"
+required>
+
+</div>
+
+<div class="input-box" id="vehicleTypeBox">
+  <i class="fa-solid fa-motorcycle"></i>
+  <select id="vehicleType" required>
+    <option value="Car">🚘 EV Car (4-Wheeler)</option>
+    <option value="Bike">🛵 EV Bike / Scooter (2-Wheeler)</option>
+  </select>
+</div>
+
+<div class="input-box">
+  <i class="fa-solid fa-user-gear"></i>
+  <select id="role" required>
+    <option value="USER">Register as User</option>
+    <option value="ADMIN">Register as Admin</option>
+  </select>
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="password"
+placeholder="Password"
+required>
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm Password"
+required>
+
+</div>
+
+<button type="submit">
+
+Register
+
+</button>
+
+<p>
+
+Already have an account?
+
+<a href="login.html">
+
+Login
+
+</a>
+
+</p>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- OTP Verification Modal -->
+<div id="otpModal" class="otp-modal">
+  <div class="otp-content">
+    <h3>Phone Verification</h3>
+    <p>Please enter the 6-digit OTP sent to <strong id="otpPhoneDisplay"></strong> to complete your registration.</p>
+    <form id="otpForm">
+      <div class="otp-input-container">
+        <div class="input-box">
+          <i class="fa-solid fa-key"></i>
+          <input type="text" id="otpCode" placeholder="6-digit OTP" maxlength="6" required>
+        </div>
+      </div>
+      <div class="otp-buttons">
+        <button type="button" class="btn-cancel" id="cancelOtpBtn">Cancel</button>
+        <button type="submit">Verify & Register</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/register.js"></script>
+<script src="js/responsive.js"></script>
+</body>
+
+</html>

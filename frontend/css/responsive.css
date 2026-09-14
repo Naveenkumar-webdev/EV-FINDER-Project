@@ -1,0 +1,241 @@
+/* ======================================================
+   EV Finder - Responsive & Mobile UI Design System
+   ====================================================== */
+
+/* Mobile Topbar & Hamburger Button Styles */
+.mobile-header {
+  display: none;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-header .mobile-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.mobile-header .mobile-logo i {
+  color: #22c55e;
+  font-size: 1.4rem;
+}
+
+.mobile-menu-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-toggle:active {
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Sidebar Drawer Overlay */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1050;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Media Query for Screen <= 768px (Mobile & Small Tablets) */
+@media screen and (max-width: 768px) {
+  
+  /* Show Mobile Header */
+  .mobile-header {
+    display: flex;
+  }
+
+  /* Index / Navbar Adjustments */
+  header .navbar {
+    padding: 12px 18px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .index-bg .nav-links,
+  .navbar .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(16px);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 20px;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+  }
+
+  .nav-links.mobile-open {
+    display: flex !important;
+  }
+
+  .navbar .auth-buttons {
+    margin-left: auto;
+  }
+
+  /* App Dashboard / Sidebar Adjustments */
+  .container {
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    position: fixed !important;
+    top: 0;
+    left: -300px;
+    width: 280px !important;
+    height: 100vh !important;
+    z-index: 1100;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .sidebar.mobile-active {
+    left: 0 !important;
+  }
+
+  .main {
+    margin-left: 0 !important;
+    padding: 20px 16px !important;
+    width: 100% !important;
+  }
+
+  .topbar {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 24px !important;
+    gap: 12px !important;
+  }
+
+  .topbar h1 {
+    font-size: 1.5rem !important;
+  }
+
+  /* Grid Layouts to 1 column on Mobile */
+  .cards,
+  .action-grid,
+  .station-grid,
+  .hero-buttons,
+  .features-grid,
+  .contact-container,
+  .profile-grid,
+  .profile-dashboard,
+  .details-grid,
+  .history-container,
+  .booking-container {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .profile-details-card,
+  .profile-summary-card {
+    padding: 24px 16px !important;
+    min-height: auto !important;
+  }
+
+  .detail-box {
+    padding: 14px 16px !important;
+    gap: 12px !important;
+  }
+
+  .detail-box.full-width {
+    grid-column: span 1 !important;
+  }
+
+  .detail-content p {
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .hero p {
+    font-size: 1rem !important;
+  }
+
+  /* Responsive Table Container */
+  .recent table,
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .recent th, .recent td,
+  table th, table td {
+    padding: 12px 14px !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Touch Friendly Inputs and Buttons */
+  button, input, select, textarea, .btn, a.btn {
+    min-height: 44px;
+    font-size: 0.95rem;
+  }
+
+  .modal-box, .review-modal-box {
+    width: 92% !important;
+    padding: 24px 18px !important;
+    margin: 0 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  .auth-buttons {
+    gap: 8px !important;
+  }
+
+  .login-btn, .register-btn {
+    padding: 8px 14px !important;
+    font-size: 0.85rem !important;
+  }
+}

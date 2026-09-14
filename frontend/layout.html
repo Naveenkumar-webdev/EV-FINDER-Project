@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#0f5d82">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+
+<title>EV Finder | Dashboard</title>
+
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-bolt"></i>
+
+<h2>EV Finder</h2>
+
+</div>
+
+<ul>
+
+<li class="active">
+
+<a href="layout.html">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+<li>
+
+<a href="view-stations.html">
+
+<i class="fa-solid fa-location-dot"></i>
+
+Nearby Stations
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="booking.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+Book Charging
+
+</a>
+
+</li>
+
+<li>
+
+<a href="history.html">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+My Bookings
+
+</a>
+
+</li>
+
+<li>
+
+<a href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+Profile
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="index.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main Content -->
+
+<div class="main">
+
+<div class="topbar">
+
+<h1>
+
+Welcome,
+
+<span id="userName">
+
+Naveen
+
+</span>
+
+
+
+</h1>
+
+<div class="profile" title="Click to view profile">
+
+<i class="fa-solid fa-circle-user"></i>
+
+</div>
+
+</div>
+
+<!-- Dashboard Cards -->
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<h2 id="stationCount">
+
+0
+
+</h2>
+
+<p>
+
+Charging Stations
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<h2 id="bookingCount">
+
+0
+
+</h2>
+
+<p>
+
+My Bookings
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-bolt"></i>
+
+<h2>
+
+24×7
+
+</h2>
+
+<p>
+
+Support
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-star"></i>
+
+<h2>
+
+4.9★
+
+</h2>
+
+<p>
+
+User Rating
+
+</p>
+
+</div>
+
+</div>
+
+<!-- Quick Actions -->
+
+<div class="actions">
+
+<h2>
+
+Quick Actions
+
+</h2>
+
+<div class="action-grid">
+
+<a href="view-stations.html">
+
+<i class="fa-solid fa-map-location-dot"></i>
+
+<span>
+
+Nearby Stations
+
+</span>
+
+</a>
+
+
+<a href="booking.html">
+
+<i class="fa-solid fa-plug-circle-bolt"></i>
+
+<span>
+
+Book Charging
+
+</span>
+
+</a>
+
+<a href="history.html">
+
+<i class="fa-solid fa-file-lines"></i>
+
+<span>
+
+Booking History
+
+</span>
+
+</a>
+
+</div>
+
+</div>
+
+<!-- Recent Bookings -->
+
+<div class="recent">
+
+<h2>
+
+Recent Bookings
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Station</th>
+
+<th>Vehicle</th>
+
+<th>Date</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="recentBookings">
+
+<tr>
+
+<td colspan="4">
+
+Loading...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- User Reviews Section -->
+<div class="recent" style="margin-top: 45px;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+<h2>Customer Reviews & Ratings ⭐</h2>
+<span style="font-size: 0.9rem; color: #64748b; font-weight: 600;" id="totalReviewsCount">0 Reviews</span>
+</div>
+<table>
+<thead>
+<tr>
+<th>Station</th>
+<th>Customer</th>
+<th>Rating</th>
+<th>Feedback Review</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody id="userReviewsTable">
+<tr>
+<td colspan="5">Loading reviews...</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+
+<!-- Star Rating Customer Review Modal -->
+<div class="modal-overlay" id="reviewModal" style="display: none;">
+  <div class="review-modal-box">
+    <div class="review-modal-header">
+      <div class="review-badge-icon">⭐</div>
+      <h3>Rate Your Charging Experience</h3>
+      <p id="reviewStationText">We noticed you previously booked a charging slot. How was your experience?</p>
+    </div>
+    
+    <div class="star-rating-container">
+      <div class="stars-row" id="starRatingRow">
+        <i class="fa-solid fa-star star-btn" data-rating="1"></i>
+        <i class="fa-solid fa-star star-btn" data-rating="2"></i>
+        <i class="fa-solid fa-star star-btn" data-rating="3"></i>
+        <i class="fa-solid fa-star star-btn" data-rating="4"></i>
+        <i class="fa-solid fa-star star-btn" data-rating="5"></i>
+      </div>
+      <div class="rating-label" id="ratingLabel">Tap stars to rate</div>
+    </div>
+
+    <div class="review-input-group">
+      <textarea id="reviewComment" rows="3" placeholder="Write a brief review about your station experience (optional)..."></textarea>
+    </div>
+
+    <div class="review-modal-actions">
+      <button class="btn-review-cancel" onclick="closeReviewModal(true)">Remind Me Later</button>
+      <button class="btn-review-submit" onclick="submitUserReview()">Submit Review ⭐</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/layout.js"></script>
+<script src="js/responsive.js"></script>
+</body>
+
+</html>
