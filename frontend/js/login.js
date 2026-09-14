@@ -22,8 +22,7 @@ async function loginUser(e) {
     };
 
     try {
-        const host = window.location.hostname || "127.0.0.1";
-        const response = await fetch(`http://${host}:8080/api/users/login`, {
+        const response = await fetch("https://ev-finder-backend-production.up.railway.app/api/users/login", {
 
             method: "POST",
 

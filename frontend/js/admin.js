@@ -66,8 +66,7 @@ function isBookingCompleted(bookingDateStr, slotStr) {
 // Load all stations
 // ----------------------
 function loadStations() {
-    const host = window.location.hostname || '127.0.0.1';
-    fetch(`http://${host}:8080/api/stations`)
+    fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`)
         .then(res => res.json())
         .then(data => {
             allStationsData = data;
@@ -175,8 +174,7 @@ function addStation() {
         longitude: parseFloat(document.getElementById("lng").value) || 0
     };
 
-    const host = window.location.hostname || '127.0.0.1';
-    fetch(`http://${host}:8080/api/stations`, {
+    fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -209,7 +207,7 @@ function deleteStation(id) {
     if (!confirm("Are you sure you want to delete this station?")) {
         return;
     }
-    fetch(`http://${window.location.hostname || '127.0.0.1'}:8080/api/stations/${id}`, {
+    fetch(`https://ev-finder-backend-production.up.railway.app/api/stations/${id}`, {
         method: "DELETE"
     })
     .then(res => {
@@ -224,8 +222,7 @@ function deleteStation(id) {
 // Load All Stations Bookings
 // ----------------------
 function loadAllBookings() {
-    const host = window.location.hostname || '127.0.0.1';
-    fetch(`http://${host}:8080/api/bookings`)
+    fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings`)
         .then(res => res.json())
         .then(data => {
             allBookingsData = data;
@@ -369,7 +366,7 @@ function cancelBookingByAdmin(id) {
     if (!confirm("Are you sure you want to cancel this booking? Slot will be restored to the station.")) {
         return;
     }
-    fetch(`http://${window.location.hostname || '127.0.0.1'}:8080/api/bookings/${id}/cancel`, {
+    fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings/${id}/cancel`, {
         method: "POST"
     })
     .then(res => {
@@ -385,7 +382,7 @@ function deleteBookingByAdmin(id) {
     if (!confirm("Are you sure you want to permanently delete this booking record?")) {
         return;
     }
-    fetch(`http://${window.location.hostname || '127.0.0.1'}:8080/api/bookings/${id}`, {
+    fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings/${id}`, {
         method: "DELETE"
     })
     .then(res => {

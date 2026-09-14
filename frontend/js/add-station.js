@@ -9,9 +9,7 @@ document.getElementById("stationForm").addEventListener("submit", async function
         availableSlots: parseInt(document.getElementById("availableSlots").value)
     };
 
-    try {
-        const host = window.location.hostname || "127.0.0.1";
-        const response = await fetch(`http://${host}:8080/api/stations`, {
+        const response = await fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`, {
 
             method: "POST",
 

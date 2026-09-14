@@ -1,5 +1,5 @@
 const API_HOST = (window.location && window.location.hostname) ? window.location.hostname : "127.0.0.1";
-const BASE_URL = `http://${API_HOST}:8080/api`;
+const BASE_URL = "https://ev-finder-backend-production.up.railway.app/api";
 
 async function makeApiRequest(endpoint, method = "GET", data = null) {
     const config = {
@@ -8,12 +8,12 @@ async function makeApiRequest(endpoint, method = "GET", data = null) {
             "Content-Type": "application/json"
         }
     };
-    
+
     const token = localStorage.getItem("token");
     if (token) {
         config.headers["Authorization"] = `Bearer ${token}`;
     }
-    
+
     if (data && (method === "POST" || method === "PUT")) {
         config.body = JSON.stringify(data);
     }

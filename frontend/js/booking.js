@@ -59,8 +59,7 @@ function onVehicleCategoryChange() {
 // Fetch stations from Spring Boot
 // -------------------------------
 function loadStations() {
-    const host = window.location.hostname || "127.0.0.1";
-    fetch(`http://${host}:8080/api/stations`)
+    fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`)
         .then(response => response.json())
         .then(data => {
             let stationSelect = document.getElementById("station");
@@ -239,8 +238,7 @@ function confirmBooking() {
     const ratePerHour = vehicleType === "Bike" ? 30 : 150;
     const calculatedAmount = hours * ratePerHour;
 
-    const host = window.location.hostname || "127.0.0.1";
-    fetch(`http://${host}:8080/api/bookings`, {
+    fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

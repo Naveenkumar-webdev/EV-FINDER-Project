@@ -12,9 +12,7 @@ window.onload = function () {
     document.getElementById("bId").innerText = "Booking ID: " + bookingId;
     document.getElementById("bAmount").innerText = "Amount: -";
 
-    const host = window.location.hostname || "127.0.0.1";
-    // Fetch booking details from backend to compute the exact price (Hours * 150)
-    fetch(`http://${host}:8080/api/bookings/${bookingId}`)
+    fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings/${bookingId}`)
         .then(res => res.json())
         .then(booking => {
             document.getElementById("bStation").innerText = "Station: " + booking.station;
@@ -104,8 +102,7 @@ function payNow() {
     alert("Processing Payment...");
 
     setTimeout(() => {
-        const host = window.location.hostname || "127.0.0.1";
-        fetch(`http://${host}:8080/api/bookings/${bookingId}/pay`, {
+        fetch(`https://ev-finder-backend-production.up.railway.app/api/bookings/${bookingId}/pay`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ amount, method, upiId })

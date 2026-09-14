@@ -14,8 +14,7 @@ let filteredStations = [];
 
 async function loadStations() {
     try {
-        const host = window.location.hostname || "127.0.0.1";
-        const response = await fetch(`http://${host}:8080/api/stations`);
+        const response = await fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`);
 
         if (!response.ok) {
             throw new Error("Unable to load stations");

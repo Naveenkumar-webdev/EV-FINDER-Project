@@ -14,8 +14,7 @@ function initMap() {
 
 // Load stations from backend
 function loadStations() {
-    const host = window.location.hostname || "127.0.0.1";
-    fetch(`http://${host}:8080/api/stations`)
+    fetch(`https://ev-finder-backend-production.up.railway.app/api/stations`)
         .then(res => res.json())
         .then(data => {
 
